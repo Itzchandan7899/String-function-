@@ -1,0 +1,50 @@
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    // Declare strings
+    char str1[100], str2[100], str3[100];
+    char ch = 'o';
+    
+    // Input two strings
+    printf("Enter the first string: ");
+    fgets(str1, sizeof(str1), stdin);
+    // Remove the newline character at the end of the string (if any)
+    str1[strcspn(str1, "\n")] = '\0';
+
+    printf("Enter the second string: ");
+    fgets(str2, sizeof(str2), stdin);
+    str2[strcspn(str2, "\n")] = '\0';
+
+    // 1. String Length using strlen()
+    printf("\nLength of the first string: %zu\n", strlen(str1));
+    printf("Length of the second string: %zu\n", strlen(str2));
+
+    // 2. Copy a string using strcpy()
+    strcpy(str3, str1); // Copy content of str1 into str3
+    printf("\nString 3 after copying from string 1: %s\n", str3);
+
+    // 3. Concatenate strings using strcat()
+    strcat(str1, str2); // Append str2 to str1
+    printf("\nString 1 after concatenation with string 2: %s\n", str1);
+
+    // 4. Compare strings using strcmp()
+    int result = strcmp(str1, str2);
+    if (result == 0) {
+        printf("\nBoth strings are equal.\n");
+    } else if (result > 0) {
+        printf("\nString 1 is greater than String 2.\n");
+    } else {
+        printf("\nString 1 is less than String 2.\n");
+    }
+
+    // 5. Find a character in the string using strchr()
+    char *ptr = strchr(str1, ch); // Find first occurrence of character 'o' in str1
+    if (ptr != NULL) {
+        printf("\nCharacter '%c' found at position: %ld\n", ch, ptr - str1 + 1);
+    } else {
+        printf("\nCharacter '%c' not found in the string.\n", ch);
+    }
+
+    return 0;
+}
